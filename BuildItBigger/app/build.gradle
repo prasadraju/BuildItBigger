@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.0"
+
+    defaultConfig {
+        applicationId "com.prasad.builditbigger"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        free {
+            applicationId "com.prasad.builditbigger.builditbigger.free"
+        }
+        paid {
+            applicationId "com.prasad.builditbigger.builditbigger.paid"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+
+    compile 'com.android.support:appcompat-v7:24.0.0-beta1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':myandroidlibrary')
+    compile project(':jokelib')
+    compile project(path: ':backend1', configuration: 'android-endpoints')
+    freeCompile 'com.google.android.gms:play-services-ads:9.0.2'
+
+}
